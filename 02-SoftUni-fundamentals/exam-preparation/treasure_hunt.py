@@ -13,6 +13,7 @@ def main():
 
         if command[0] == "Loot":
             for item in command[1:]:
+                # does_item_exist = lambda lst, item: item in lst - Works too
                 if not does_item_exist(treasure_map, item):
                     treasure_map.insert(0, item)
 
