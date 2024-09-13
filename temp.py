@@ -1,6 +1,6 @@
-all_sum = list(map(int, input().split()))
-
-print(sum(all_sum))
-"""
-5 4 8 6 3 8 7 7 9d
-"""
+current_time = list(map(int, input().split(":")))
+print(f"{':'.join([str(el) for el in current_time]):02d}")
+# print(f"{[current_time[0]]:02d}", f"{current_time[1]:02d}", f"{current_time[2]:02d}")
+current_time = list(map(int, input().split(":")))
+formatted_time = ":".join([f"{el:02d}" for el in current_time])
+print(formatted_time)
