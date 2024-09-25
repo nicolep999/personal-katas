@@ -1,19 +1,28 @@
-def sorting_cheeses(**kwargs):
-    sorted_result = sorted(kwargs.items(), key=lambda x: (-len(x[1]), x[0]))
-    result = ""
-    for key, value in sorted_result:
-        result += f"{key}\n"
-        sorted_quantity_list = sorted(value, reverse=True)
-        result += "\n".join(str(el) for el in sorted_quantity_list) + "\n"
-    return result
+def grocery_store(**kwargs):
+    sorted_products = sorted(
+        kwargs.items(), key=lambda item: (-item[1], -len(item[0]), item[0])
+    )
+
+    receipt_lines = [f"{name}: {quantity}" for name, quantity in sorted_products]
+
+    return "\n".join(receipt_lines)
 
 
 print(
-    sorting_cheeses(
-        Parmesan=[102, 120, 135],
-        Camembert=[100, 100, 105, 500, 430],
-        Mozzarella=[50, 125],
+    grocery_store(
+        bread=5,
+        pasta=12,
+        eggs=12,
     )
 )
 
-print(sorting_cheeses(Parmigiano=[165, 215], Feta=[150, 515], Brie=[150, 125]))
+print("***")
+
+print(
+    grocery_store(
+        bread=2,
+        pasta=2,
+        eggs=20,
+        carrot=1,
+    )
+)
