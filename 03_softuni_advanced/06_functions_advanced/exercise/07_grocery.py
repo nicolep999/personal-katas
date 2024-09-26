@@ -1,5 +1,6 @@
 def grocery_store(**kwargs):
-    for key, value in sorted(kwargs.items() lambda x :):
+    result = sorted(kwargs.items(), key=lambda x: (-x[1] - len(x[0]), x[0]))
+    return "\n".join(f"{x}: {y}" for x, y in result)
 
 
 print(
