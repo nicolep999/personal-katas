@@ -7,17 +7,13 @@ def main_controller(arr, x):
 
         mid = (high + low) // 2
 
-        # If x is greater, ignore left half
         if arr[mid] < x:
             low = mid + 1
 
-        # If x is smaller, ignore right half
         elif arr[mid] > x:
             high = mid
 
-        # means x is present at mid
         else:
             return mid
 
-    # If we reach here, then the element was not present
     return False
