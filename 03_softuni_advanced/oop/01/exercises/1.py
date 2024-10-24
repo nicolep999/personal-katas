@@ -3,9 +3,5 @@ class Shop:
         self.name = name
         self.items = items
 
-    def get_items_count(self):
+    def get_items_count(self) -> int:
         return len(self.items)
-
-
-shop = Shop("My Shop", ["Apples", "Bananas", "Cucumbers"])
-print(shop.get_items_count())
