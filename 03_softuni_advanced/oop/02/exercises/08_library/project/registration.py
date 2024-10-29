@@ -4,17 +4,20 @@ from project.library import Library
 
 class Registration:
 
-    def add_user(self, user: User, library: Library) -> None | str:
+    @staticmethod
+    def add_user(user: User, library: Library) -> None | str:
         if user in library.user_records:
             return f"User with id = {user.user_id} already registered in the library!"
         library.user_records.append(user)
 
-    def remove_user(self, user: User, library: Library) -> None | str:
+    @staticmethod
+    def remove_user(user: User, library: Library) -> None | str:
         if user not in library.user_records:
             return "We could not find such user to remove!"
         library.user_records.remove(user)
 
-    def change_username(self, user_id: int, new_username: str, library: Library) -> str:
+    @staticmethod
+    def change_username(user_id: int, new_username: str, library: Library) -> str:
         user = next(
             (user for user in library.user_records if user.user_id == user_id), None
         )

@@ -3,7 +3,7 @@ from project.song import Song
 
 class Album:
 
-    def __init__(self, name: str, *args: Song):
+    def __init__(self, name: str, *args: tuple[Song]):
         self.name = name
         self.published = False
         self.songs: list = list(args)
