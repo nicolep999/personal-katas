@@ -81,7 +81,7 @@ class Tests(unittest.TestCase):
         self.hotel.take_room(1, 3)
         res = self.hotel.status().strip()
         actual = "Hotel Some Hotel has 3 total guests\nFree rooms: \nTaken rooms: 1"
-        self.assertEqual(res, actual)
+        self.assertEqual(res, actual)   
 
 
 if __name__ == "__main__":
