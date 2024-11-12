@@ -12,7 +12,7 @@ import unittest
 class Tests(unittest.TestCase):
     def test_lion_init(self):
         l = Lion("a", "m", 4)
-        self.assertEqual(l.name, "a")
+        self.assertEqual(l._name, "a")
         self.assertEqual(l.gender, "m")
         self.assertEqual(l.age, 4)
 
@@ -28,7 +28,7 @@ class Tests(unittest.TestCase):
 
     def test_tiger_init(self):
         t = Tiger("z", "m", 1)
-        self.assertEqual(t.name, "z")
+        self.assertEqual(t._name, "z")
         self.assertEqual(t.gender, "m")
         self.assertEqual(t.age, 1)
 
@@ -44,7 +44,7 @@ class Tests(unittest.TestCase):
 
     def test_cheetah_init(self):
         c = Cheetah("l", "f", 3)
-        self.assertEqual(c.name, "l")
+        self.assertEqual(c._name, "l")
         self.assertEqual(c.gender, "f")
         self.assertEqual(c.age, 3)
 
@@ -60,7 +60,7 @@ class Tests(unittest.TestCase):
 
     def test_keeper_init(self):
         k = Keeper("john", 21, 200)
-        self.assertEqual(k.name, "john")
+        self.assertEqual(k._name, "john")
         self.assertEqual(k.age, 21)
         self.assertEqual(k.salary, 200)
 
@@ -71,7 +71,7 @@ class Tests(unittest.TestCase):
 
     def test_vet_init(self):
         k = Vet("john", 21, 200)
-        self.assertEqual(k.name, "john")
+        self.assertEqual(k._name, "john")
         self.assertEqual(k.age, 21)
         self.assertEqual(k.salary, 200)
 
@@ -82,7 +82,7 @@ class Tests(unittest.TestCase):
 
     def test_caretaker_init(self):
         k = Caretaker("john", 21, 200)
-        self.assertEqual(k.name, "john")
+        self.assertEqual(k._name, "john")
         self.assertEqual(k.age, 21)
         self.assertEqual(k.salary, 200)
 
@@ -96,7 +96,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(z._Zoo__animal_capacity, 6)
         self.assertEqual(z._Zoo__workers_capacity, 10)
         self.assertEqual(z._Zoo__budget, 1500)
-        self.assertEqual(z.name, "My Zoo")
+        self.assertEqual(z._name, "My Zoo")
         self.assertEqual(z.animals, [])
         self.assertEqual(z.workers, [])
 

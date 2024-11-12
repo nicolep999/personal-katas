@@ -26,17 +26,17 @@ class Zoo:
 
         self.animals.append(animal)
         self.__budget -= price
-        return f"{animal.name} the {animal.__class__.__name__} added to the zoo"
+        return f"{animal._name} the {animal.__class__.__name__} added to the zoo"
 
     def hire_worker(self, worker: Worker) -> str:
         if len(self.workers) >= self.__workers_capacity:
             return "Not enough space for worker"
 
         self.workers.append(worker)
-        return f"{worker.name} the {worker.__class__.__name__} hired successfully"
+        return f"{worker._name} the {worker.__class__.__name__} hired successfully"
 
     def fire_worker(self, worker_name: str) -> str:
-        worker = next((w for w in self.workers if w.name == worker_name), None)
+        worker = next((w for w in self.workers if w._name == worker_name), None)
         if worker:
             self.workers.remove(worker)
             return f"{worker_name} fired successfully"

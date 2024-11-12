@@ -4,18 +4,18 @@ from project.topping import Topping
 
 class Pizza:
     def __init__(self, name: str, dough: Dough, max_number_of_toppings: int):
-        self.name = name
-        self.dough = dough
-        self.max_number_of_toppings = max_number_of_toppings
-        self.toppings: dict[str:float] = {}
+        self._name = name
+        self._dough = dough
+        self._max_number_of_toppings = max_number_of_toppings
+        self.toppings = {}
 
     @property
     def name(self):
         return self._name
 
     @name.setter
-    def name(self, value: str):
-        if value == "":
+    def name(self, value):
+        if not value:
             raise ValueError("The name cannot be an empty string")
         self._name = value
 
@@ -24,7 +24,7 @@ class Pizza:
         return self._dough
 
     @dough.setter
-    def dough(self, value: Dough):
+    def dough(self, value):
         if value is None:
             raise ValueError("You should add dough to the pizza")
         self._dough = value
@@ -34,7 +34,7 @@ class Pizza:
         return self._max_number_of_toppings
 
     @max_number_of_toppings.setter
-    def max_number_of_toppings(self, value: int):
+    def max_number_of_toppings(self, value):
         if value <= 0:
             raise ValueError(
                 "The maximum number of toppings cannot be less or equal to zero"
@@ -42,13 +42,14 @@ class Pizza:
         self._max_number_of_toppings = value
 
     def add_topping(self, topping: Topping):
-        if len(self.toppings) >= self.max_number_of_toppings:
+        if len(self.toppings) >= self._max_number_of_toppings:
             raise ValueError("Not enough space for another topping")
+
         if topping.topping_type in self.toppings:
-            self.toppings[topping.topping_type] += topping.weight
+            self.toppings[topping.topping_type] += topping._weight
         else:
-            self.toppings[topping.topping_type] = topping.weight
+            self.toppings[topping.topping_type] = topping._weight
 
     def calculate_total_weight(self):
-        total_weight = self.dough.weight + sum(self.toppings.values())
+        total_weight = self._dough._weight + sum(self.toppings.values())
         return total_weight

@@ -9,15 +9,15 @@ class Guild:
 
     def assign_player(self, player: Player) -> str:
         if player.guild == self.name:
-            return f"Player {player.name} is already in the guild."
+            return f"Player {player._name} is already in the guild."
         elif player.guild == "Unaffiliated":
             self.players.append(player)
             player.guild = self.name
-            return f"Welcome player {player.name} to the guild {self.name}"
-        return f"Player {player.name} is in another guild."
+            return f"Welcome player {player._name} to the guild {self.name}"
+        return f"Player {player._name} is in another guild."
 
     def kick_player(self, player_name: str) -> str:
-        player = next((p for p in self.players if p.name == player_name), None)
+        player = next((p for p in self.players if p._name == player_name), None)
         if player and player.guild == self.name:
             self.players.remove(player)
             player.guild = "Unaffiliated"

@@ -16,7 +16,7 @@ class Trainer:
 
     def release_pokemon(self, pokemon_name: str) -> str:
         pokemon_to_release = next(
-            (p for p in self.pokemons if p.name == pokemon_name), None
+            (p for p in self.pokemons if p._name == pokemon_name), None
         )
         if pokemon_to_release:
             self.pokemons.remove(pokemon_to_release)

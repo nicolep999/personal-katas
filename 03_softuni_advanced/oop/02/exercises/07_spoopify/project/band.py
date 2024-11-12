@@ -8,14 +8,14 @@ class Band:
         self.albums: list[Album] = []
 
     def add_album(self, album: Album) -> str:
-        is_added = next((a for a in self.albums if a.name == album.name), None)
+        is_added = next((a for a in self.albums if a._name == album._name), None)
         if is_added:
-            return f"Band {self.name} already has {album.name} in their library."
+            return f"Band {self.name} already has {album._name} in their library."
         self.albums.append(album)
-        return f"Band {self.name} has added their newest album {album.name}."
+        return f"Band {self.name} has added their newest album {album._name}."
 
     def remove_album(self, album_name: str) -> str:
-        album_to_remove = next((a for a in self.albums if a.name == album_name), None)
+        album_to_remove = next((a for a in self.albums if a._name == album_name), None)
         if not album_to_remove:
             return f"Album {album_name} is not found."
         if album_to_remove.published and album_to_remove:

@@ -14,7 +14,7 @@ class Section:
         return f"Task is already in the section {self.name}"
 
     def complete_task(self, task_name: str) -> str:
-        task_to_complete = next((t for t in self.tasks if t.name == task_name), None)
+        task_to_complete = next((t for t in self.tasks if t._name == task_name), None)
         if task_to_complete:
             task_to_complete.completed = True
             return f"Completed task {task_name}"

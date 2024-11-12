@@ -10,7 +10,7 @@ class ProductRepository:
         self.products.append(product)
 
     def find(self, product_name: str) -> Product | None:
-        is_available = next((p for p in self.products if p.name == product_name), None)
+        is_available = next((p for p in self.products if p._name == product_name), None)
         if is_available:
             return is_available
 
@@ -21,5 +21,5 @@ class ProductRepository:
 
     def __repr__(self) -> str:
         return "\n".join(
-            f"{product.name}: {product.quantity}" for product in self.products
+            f"{product._name}: {product.quantity}" for product in self.products
         )
