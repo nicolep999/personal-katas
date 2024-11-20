@@ -1,20 +1,17 @@
 def solution():
 
     def integers():
-        # TODO: Implement
-        pass
+        num = 1
+        while True:
+            yield num
+            num += 1
 
     def halves():
-
         for i in integers():
-            pass
-
-    # TODO: Implement
+            yield i / 2
 
     def take(n, seq):
-        pass
-
-    # TODO: Implement
+        return [next(seq) for _ in range(n)]
 
     return (take, halves, integers)
 
