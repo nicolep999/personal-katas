@@ -1,10 +1,8 @@
-class squares:
+def squares(n: int):
+    num = 1
+    while num <= n:
+        yield num * num
+        num += 1
 
-    def __init__(self, n: int) -> None:
-        self.n = n
 
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        pass
+print(list(squares(5)))
