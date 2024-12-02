@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class BaseProduct(ABC):
-
     def __init__(self, model: str, price: float, material: str, sub_type: str):
         self.model = model
         self.price = price
@@ -11,23 +10,23 @@ class BaseProduct(ABC):
 
     @property
     def model(self):
-        return self._model
+        return self.__model
 
     @model.setter
     def model(self, value):
-        if len(value) < 3 or value.isspace():
+        if len(value) < 3 or not value.strip():
             raise ValueError("Product model must be at least 3 chars long!")
-        self._model = value
+        self.__model = value
 
     @property
     def price(self):
-        return self._price
+        return self.__price
 
     @price.setter
     def price(self, value: float):
         if value <= 0.0:
             raise ValueError("Product price must be greater than zero!")
-        self._price = value
+        self.__price = value
 
     @abstractmethod
     def discount(self):
