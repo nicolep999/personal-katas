@@ -3,11 +3,11 @@ from project.products.base_product import BaseProduct
 
 
 class BaseStore(ABC):
-    def __init__(self, name: str, location: str, capacity: int, products: list):
+    def __init__(self, name: str, location: str, capacity: int):
         self.name = name
         self.location = location
         self.capacity = capacity
-        self.products: list[BaseProduct] = products
+        self.products: list[BaseProduct] = []
 
     @property
     def name(self):

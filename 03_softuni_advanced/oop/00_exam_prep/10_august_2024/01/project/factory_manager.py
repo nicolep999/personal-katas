@@ -7,6 +7,10 @@ from project.stores.toy_store import ToyStore
 
 
 class FactoryManager:
+
+    PRODUCT_TYPES = {"Chair": Chair, "HobbyHorse": HobbyHorse}
+    STORE_TYPES = {"FurnitureStore": FurnitureStore, "ToyStore": ToyStore}
+
     def __init__(self, name: str):
         self.name = name
         self.income = 0.0
@@ -14,49 +18,32 @@ class FactoryManager:
         self.stores: list[BaseStore] = []
 
     def produce_item(self, product_type: str, model: str, price: float):
-        valid_products = ["Chair", "HobbyHorse"]
-        if product_type not in valid_products:
-            raise Exception(f"Invalid product type")
-        if product_type == "Chair":
-            self.products.append(Chair(model, price))
-        else:
-            self.products.append(HobbyHorse(model, price))
+        if product_type not in self.PRODUCT_TYPES:
+            raise Exception(f"Invalid product type!")
+        product = self.PRODUCT_TYPES[product_type](model, price)
+        self.products.append(product)
         return f"A product of sub-type {'Furniture' if product_type == 'Chair' else 'Toys'} was produced."
 
     def register_new_store(self, store_type: str, name: str, location: str):
-        valid_stores = ["FurnitureStore", "ToyStore"]
-        if store_type not in valid_stores:
+        if store_type not in self.STORE_TYPES:
             raise Exception(f"Invalid store type")
-        if store_type == "FurnitureStore":
-            self.stores.append(FurnitureStore(name, location))
-        else:
-            self.stores.append(ToyStore(name, location))
+        store = self.STORE_TYPES[store_type](name, location)
+        self.stores.append(store)
         return f"A new {store_type} was successfully registered."
 
     def sell_products_to_store(self, store: BaseStore, *products: BaseProduct):
-        if len(products) > store.capacity:
-            return f"Store {store.name} has no capacity for this purchase."
-        store_type = "Furniture" if isinstance(store, FurnitureStore) else "Toys"
-        matching_products = [
-            product for product in products if product.sub_type == store_type
-        ]
-        if not matching_products:
+        if store.capacity < len(products):
+            raise Exception(f"Store {store.name} has no capacity for this purchase.")
+        valid_products = [p for p in products if p.sub_type in store.store_type()]
+        if not valid_products:
             return "Products do not match in type. Nothing sold."
-
-        store.products.extend(matching_products)
-
-        self.products = [
-            product for product in self.products if product not in matching_products
-        ]
-
-        store.capacity -= len(matching_products)
-
-        total_price = sum(product.price for product in matching_products)
-        self.income += total_price
-
-        return (
-            f"Store {store.name} successfully purchased {len(matching_products)} items."
-        )
+        store.products.extend(valid_products)
+        for p in valid_products:
+            store.products.append(p)
+            store.capacity -= 1
+            self.products.remove(p)
+            self.income += p.price
+        return f"Store {store.name} successfully purchased {len(valid_products)} items."
 
     def unregister_store(self, store_name: str):
         store_exist = next(
@@ -76,10 +63,7 @@ class FactoryManager:
         products_count = len(products_to_discount)
 
         for product in products_to_discount:
-            if product.sub_type == "Furniture":
-                product.discount()
-            elif product.sub_type == "Toy":
-                product.discount()
+            product.discount()
 
         return (
             f"Discount applied to {products_count} products with model: {product_model}"
@@ -97,6 +81,7 @@ class FactoryManager:
         product_counts_per_model = {}
         total_price = 0.0
         for product in self.products:
+            product.discount()
             product_counts_per_model[product.model] = (
                 product_counts_per_model.get(product.model, 0) + 1
             )
