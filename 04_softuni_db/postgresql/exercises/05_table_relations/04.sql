@@ -1,5 +1,3 @@
-DROP TABLE manufacturers, models, production_years;
-
 CREATE TABLE manufacturers (
                                id SERIAL PRIMARY KEY,
                                name VARCHAR(255) NOT NULL
