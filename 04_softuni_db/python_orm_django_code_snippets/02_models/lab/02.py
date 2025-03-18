@@ -1,4 +1,3 @@
-'''
 class Department(models.Model):
 
     class CitiesChoices(models.TextChoices):
@@ -16,4 +15,3 @@ class Department(models.Model):
         max_length=20, null=True, blank=True, choices=CitiesChoices.choices
     )
     last_edited_on = models.DateTimeField(auto_now=True, editable=False)
-'''
