@@ -1,0 +1,8 @@
+from main_app.models import models
+
+
+class ProfileManager(models.Manager):
+
+    def get_regular_customers(self):
+        products = self.annotate(order_count=models.Count("order"))
+        return products.filter(order_count__gt=2)
