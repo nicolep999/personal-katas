@@ -1,0 +1,16 @@
+from django.core.validators import MinLengthValidator
+from models import models
+
+
+class NameMixin(models.Model):
+    name = models.CharField(
+        max_length=80, validators=[MinLengthValidator(5)], unique=True
+    )
+
+
+class WinsMixin(models.Model):
+    models.PositiveSmallIntegerField(default=0)
+
+
+class ModifedAtMixin(models.Model):
+    models.DateTimeField(auto_now_add=True)
