@@ -77,12 +77,12 @@ WSGI_APPLICATION = "orm_skeleton.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "softuni_exam_26_november_2023",
-        "USER": "postgres",
-        "PASSWORD": "334455a",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": ".",
+        "NAME": "",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "",
+        "PORT": "",
     }
 }
 
